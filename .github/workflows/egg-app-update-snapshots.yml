@@ -16,7 +16,7 @@ jobs:
     steps:
       # Checkout with personal TOKEN
       # and hop on the PR branch
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0
           token: ${{ secrets.GH_ACTION_TOKEN }}
