@@ -5,4 +5,4 @@ npm run build -w=@playwright-monorepo/utils
 
 npm run build -ws
 
-
+npx playwright codegen -o tests/codegen.spec.ts

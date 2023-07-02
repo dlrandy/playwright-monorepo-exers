@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test-eggapi": "npm run test -w=@playwright-monorepo/egg-api -- --project=chromium --reporter=list --headed",
-    "test-eggapp":"npm run e2e-test -w=@playwright-monorepo/egg-app -- --project=chromium --reporter=list --headed"
+    "test-eggapp":"npm run e2e-test -w=@playwright-monorepo/egg-app -- --project=chromium --reporter=list --headed --update-snapshots",
+    "test-eggapp-debug":"npm run e2e-test -w=@playwright-monorepo/egg-app -- --project=chromium --reporter=list --headed --debug --update-snapshots"
   },
   "keywords": [],
   "author": "dlrandy <ziyucrc@gmail.com>",
