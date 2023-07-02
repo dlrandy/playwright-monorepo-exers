@@ -18,6 +18,7 @@ function App() {
         >
           Learn React
         </a>
+        for updating snapshots
       </header>
     </div>
   );
