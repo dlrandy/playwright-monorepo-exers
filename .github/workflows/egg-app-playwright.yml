@@ -2,6 +2,8 @@ name: Playwright Tests
 on:
   push:
     branches: [ main, master ]
+    paths:
+      - "apps/egg-app/**"
   pull_request:
     branches: [ main, master ]
 jobs:
@@ -19,6 +21,7 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test
+      working-directory: apps/egg-app
     - uses: actions/upload-artifact@v3
       if: always()
       with:

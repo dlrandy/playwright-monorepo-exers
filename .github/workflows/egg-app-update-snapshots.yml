@@ -9,7 +9,7 @@ jobs:
   slash_command:
     name: slash command
     # This job will only run if the comment was on a pull requests and matches the slash command
-    if: ${{ github.event.issue.pull_request && github.event.comment.body == '/update-snapshots'}}
+    if: ${{ github.event.issue.pull_request && github.event.comment.body == '/update-snapshots-egg-app'}}
     # Common with standard build
     timeout-minutes: 60
     runs-on: ubuntu-latest
@@ -44,6 +44,7 @@ jobs:
       # Update the snapshots
       - name: Update snapshots
         run: npx playwright test --update-snapshots --reporter=list
+        working-directory: apps/egg-app
       # Commit the changes
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
