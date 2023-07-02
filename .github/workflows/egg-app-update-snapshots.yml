@@ -16,23 +16,21 @@ jobs:
     steps:
       # Checkout with personal TOKEN
       # and hop on the PR branch
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
           token: ${{ secrets.GH_ACTION_TOKEN }}
-      - name: Get Branch
-        id: getbranch
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v7
+      - name: Running on a pull request branch.
+        if: steps.branch-name.outputs.is_default == 'false'
         run: |
-          branch=$(\
-            curl \
-              -H 'authorization: Bearer ${{ secrets.Pat_Github_Token }}' \
-              https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.issue.number }} \
-            | jq -r '.head.ref')
-          echo "::set-output name=branch::$branch"
+          echo "Running on pr: ${{ steps.branch-name.outputs.current_branch }}"
       - name: Fetch Branch
         run: git fetch
       - name: Checkout Branch
-        run: git checkout ${{ steps.getbranch.outputs.branch }}
+        run: git checkout ${{ steps.branch-name.outputs.current_branch}}
       # Continue with standard build
       - uses: actions/setup-node@v3
         with:
