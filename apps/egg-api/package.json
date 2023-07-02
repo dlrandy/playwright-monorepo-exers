@@ -1,0 +1,15 @@
+{
+  "name": "@playwright-monorepo/egg-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test tests/basics.spec.ts"
+  },
+  "keywords": [],
+  "author": "dlrandy <ziyucrc@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.35.1"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "@playwright-monorepo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test-eggapi": "npm run test -w=@playwright-monorepo/egg-api -- --project=chromium --reporter=list --headed",
+    "test-eggapp":"npm run e2e-test -w=@playwright-monorepo/egg-app -- --project=chromium --reporter=list --headed"
+  },
+  "keywords": [],
+  "author": "dlrandy <ziyucrc@gmail.com>",
+  "license": "ISC",
+  "workspaces":[
+    "apps/*",
+    "libs/*"
+  ]
+}
