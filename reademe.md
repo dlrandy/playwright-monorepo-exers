@@ -9,5 +9,7 @@ npx playwright codegen -o tests/codegen.spec.ts
 
 npx playwright show-report
 
+npx playwright test --config=playwright.config.ts --project=Chromium --reporter=list/line/dot/junit/html/
+
 
 
