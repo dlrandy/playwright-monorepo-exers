@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test "
+    "test": "npx playwright test ",
+    "test:e2e": "npx playwright test --config=./tests/e2e.config.ts --project=Chromium"
   },
   "keywords": [],
   "author": "dlrandy <ziyucrc@gmail.com>",
