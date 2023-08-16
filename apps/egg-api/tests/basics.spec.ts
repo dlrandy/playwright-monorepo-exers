@@ -4,7 +4,7 @@ test('Math works', async() =>{
     expect(1 + 1).toBe(2)
 });
 
-test.only("Page demo", async({page})=>{
+test("Page demo", async({page})=>{
     await page.goto("https://google.com");
     const searchInput = page.locator('[type=search]');
     await searchInput.type("Hello Egghead");

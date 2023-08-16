@@ -1,35 +1,28 @@
 import { test, expect } from '@playwright/test';
+import { HomePage } from '../../page-objects/HomePage';
+import { FeedBackPage } from '../../page-objects/FeedBackPage';
 
 test.describe("Feedback form", ()=>{
+    let homePage: HomePage;
+    let feedbackPage: FeedBackPage;
     test.beforeEach(async({page})=>{
-        await page.goto("http://zero.webappsecurity.com/index.html");
-        await page.click("#feedback");
+        homePage = new HomePage(page);
+        feedbackPage = new FeedBackPage(page);
+
+       await homePage.visit();
+       await homePage.clickOnFeedbackLink();
     });
     // reset feedback form
     test('reset feedback form', async({page}) => {
-        await page.type("#name", "some name");
-        await page.type("#email", "some email");
-        await page.type("#subject", "some subject");
-        await page.type("#comment", "some nice comment");
-        await page.click("input[name=clear]");
-        const nameInput = await page.locator("#name");
-        const emailInput = await page.locator("#email");
-        const subjectInput = await page.locator("#subject");
-        const commentInput = await page.locator("#comment");
-       await expect(nameInput).toBeEmpty();
-       await expect(emailInput).toBeEmpty();
-       await expect(subjectInput).toBeEmpty();
-       await expect(commentInput).toBeEmpty();
+        await feedbackPage.fillForm("some name", "email","subject","comment");
+        await feedbackPage.resetForm();
+       await feedbackPage.assertReset();
     });
     // submit feedback form
     test("Submit feedback form",async({page}) => {
-        await page.type("#name", "some name");
-        await page.type("#email", "some email@email.com");
-        await page.type("#subject", "some subject");
-        await page.type("#comment", "some nice comment");
-        await page.click("input[type=submit]");
-        await page.waitForURL("http://zero.webappsecurity.com/sendFeedback.html")
-        await page.waitForSelector("#feedback-title")
+        await feedbackPage.fillForm("some name", "some email@email.com", "some subject", "some nice comment");
+        await feedbackPage.submitForm();
+        await feedbackPage.feedbackFormSent();
     });
 });
 

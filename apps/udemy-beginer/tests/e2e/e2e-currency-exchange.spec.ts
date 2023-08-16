@@ -1,37 +1,43 @@
 import { test, expect } from '@playwright/test'
+import { HomePage } from '../../page-objects/HomePage'
+import { LoginPage } from '../../page-objects/LoginPage'
 
-test.describe.only('Currency exchange form', () => {
+test.describe('Currency exchange form', () => {
+  let homePage: HomePage
+  let loginPage: LoginPage
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://zero.webappsecurity.com/index.html')
-    await page.click('#signin_button')
-    await page.type('#user_login', 'username')
-    await page.type('#user_password', 'password')
-    await page.click('text=Sign in')
-    await page.goto('http://zero.webappsecurity.com/')
+    homePage = new HomePage(page)
+    loginPage = new LoginPage(page)
+    await homePage.visit()
+    await homePage.clickOnSignIn()
+    await loginPage.login('username', 'password')
+    await homePage.visit()
   })
   test('Should make currency exchange', async ({ page }) => {
     await page.goto('http://zero.webappsecurity.com/index.html')
-    await page.click('#online-banking');
-    await page.waitForSelector('#pay_bills_link');
-    await page.click('#pay_bills_link');
+    await page.click('#online-banking')
+    await page.waitForSelector('#pay_bills_link')
+    await page.click('#pay_bills_link')
     await page.waitForSelector('#sp_payee')
     await page.click('a[href="#ui-tabs-3"]')
-    await page.waitForSelector('#pc_currency');
+    await page.waitForSelector('#pc_currency')
     await page.selectOption('#pc_currency', 'EUR')
 
-    const rate = await page.locator("#sp_sell_rate");
-    await expect(rate).toContainText("1 euro (EUR)");
+    const rate = await page.locator('#sp_sell_rate')
+    await expect(rate).toContainText('1 euro (EUR)')
 
     await page.type('#pc_amount', '5000')
     await page.click('#pc_inDollars_true')
     await page.click('#pc_calculate_costs')
 
     const conversionAmount = await page.locator('#pc_conversion_amount')
-    await expect(conversionAmount).toContainText("5000.00 U.S. dollar (USD)");
+    await expect(conversionAmount).toContainText('5000.00 U.S. dollar (USD)')
 
-    await page.click("#purchase_cash")
+    await page.click('#purchase_cash')
     const message = await page.locator('#alert_content')
     await expect(message).toBeVisible()
-    await expect(message).toContainText('Foreign currency cash was successfully purchased.');
+    await expect(message).toContainText(
+      'Foreign currency cash was successfully purchased.',
+    )
   })
 })
