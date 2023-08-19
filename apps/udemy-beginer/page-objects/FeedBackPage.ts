@@ -1,6 +1,7 @@
 import { expect, Locator, Page } from '@playwright/test'
+import { AbstractPage } from './AbstractPage'
 
-export class FeedBackPage {
+export class FeedBackPage extends AbstractPage {
   readonly page: Page
   readonly nameInput: Locator
   readonly emailInput: Locator
@@ -12,7 +13,7 @@ export class FeedBackPage {
 
 
   constructor(page: Page) {
-    this.page = page
+    super(page);
     this.nameInput = page.locator('#name')
     this.emailInput = page.locator('#email')
     this.subjectInput = page.locator('#subject')

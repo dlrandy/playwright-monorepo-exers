@@ -1,7 +1,6 @@
-import { expect, Locator, Page } from '@playwright/test';
-
-
-export class HomePage {
+import { Locator, Page } from '@playwright/test';
+import { AbstractPage } from './AbstractPage';
+export class HomePage extends AbstractPage {
     readonly page:Page;
     readonly signInButton:Locator;
     readonly searchBox:Locator;
@@ -9,7 +8,7 @@ export class HomePage {
 
 
     constructor(page:Page) {
-        this.page = page;
+        super(page);
         this.signInButton = page.locator("#signin_button");
         this.searchBox = page.locator("#searchTerm");
         this.feedbackButton = page.locator('#feedback')
