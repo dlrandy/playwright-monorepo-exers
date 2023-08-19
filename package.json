@@ -10,7 +10,7 @@
     "test-udemy-beginer":"npm run test -w=@playwright-monorepo/udemy-beginer",
     "test-udemy-beginer-e2e":"npm run test:e2e -w=@playwright-monorepo/udemy-beginer",
     "test-udemy-beginer-visual":"npm run test:visual -w=@playwright-monorepo/udemy-beginer",
-    "test-udemy-beginer-api":"npm run test:api -w=@playwright-monorepo/udemy-beginer",
+    "test-udemy-beginer-api":"npm run test:api -w=@playwright-monorepo/udemy-beginer -- --reporter=list",
     "scrap-udemy-beginer":"npm run scrap -w=@playwright-monorepo/playwright-scraping"
   },
   "keywords": [],
