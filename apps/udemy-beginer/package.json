@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test ",
-    "test:e2e": "npx playwright test --config=./tests/e2e.config.ts --project=Chromium"
+    "test:e2e": "npx playwright test --config=./tests/e2e.config.ts --project=Chromium",
+    "test:visual": "npx playwright test --config=./tests/visual.config.ts"
   },
   "keywords": [],
   "author": "dlrandy <ziyucrc@gmail.com>",

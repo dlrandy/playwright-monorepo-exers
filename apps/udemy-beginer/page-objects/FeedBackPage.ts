@@ -2,7 +2,6 @@ import { expect, Locator, Page } from '@playwright/test'
 import { AbstractPage } from './AbstractPage'
 
 export class FeedBackPage extends AbstractPage {
-  readonly page: Page
   readonly nameInput: Locator
   readonly emailInput: Locator
   readonly subjectInput: Locator
